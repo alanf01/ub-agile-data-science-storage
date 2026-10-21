@@ -1,0 +1,14 @@
+
+import pandas as pd
+
+def add_pickup_day(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df["pickup_day"] = df["tpep_pickup_datetime"].dt.strftime("%Y-%m-%d")
+    return df
+
+
+    
+def tip_percentage(df: pd.DataFrame) -> pd.Series:
+    paid = df[df["fare_amount"] > 0]
+    return paid["tip_amount"] * 100 / paid["fare_amount"]
+
